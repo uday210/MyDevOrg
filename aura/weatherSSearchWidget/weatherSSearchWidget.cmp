@@ -1,0 +1,6 @@
+<aura:component controller="weatherwidget" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    
+    <aura:handler name="init" value="{!this}" action="{!c.getdata}"/>
+
+    <ui:button label="get weather data" press="{!c.getdata}"/>
+</aura:component>

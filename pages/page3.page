@@ -1,0 +1,34 @@
+<apex:page controller="myinncon" action="{!displayform}">
+  
+  <apex:form id="myform">
+  <apex:actionFunction name="deleteaction" action="{!deleterec}" rerender="myform">
+      <apex:param name="deleid" value="" assignTo="{!del}"/>
+  </apex:actionFunction>
+      <apex:variable value="{!0}" var="i"/>
+      <apex:repeat value="{!aas}" var="aa">
+    
+      
+     <apex:inputText value="{!aa.name}"/>&nbsp;&nbsp;
+      <apex:inputText value="{!aa.aanumber}"/>
+      <apex:commandButton value="add row" action="{!addrow}"/>&nbsp;&nbsp;
+      <a class='btn' onclick="deleteaction('{!i}')">delete</a><br/>
+      <apex:variable value="{!i+1}" var="i"/>
+      </apex:repeat>
+      <apex:commandButton value="save records" action="{!saverec}"  />
+      
+      
+      <!-----------------contacts-------------->
+      
+    <br/>  
+     
+      <apex:repeat value="{!con }" var="cc">
+    
+      
+     <apex:inputText value="{!cc.firstname}"/>&nbsp;&nbsp;
+      <apex:commandButton value="add row" action="{!addccrow}"/>&nbsp;&nbsp;
+      <a class='btn' onclick="deleteaction('{!i}')">delete</a><br/>
+      </apex:repeat>
+      
+      
+  </apex:form>
+</apex:page>

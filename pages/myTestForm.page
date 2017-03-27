@@ -1,0 +1,30 @@
+<apex:page >
+<script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+<script>
+var form = new FormData();
+form.append("path", "https://metamind.io/images/mountainvsbeach.zip");
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://api.metamind.io/v1/vision/datasets/upload/sync",
+  "method": "POST",
+  "headers": {
+    "authorization": "Bearer f45efe10251108f169b2bcea6d4951d1a44c3250",
+    "cache-control": "no-cache",
+    "postman-token": "efcb2e0b-5bc9-631f-b334-220da9319f44"
+  },
+  "processData": false,
+  "contentType": false,
+  "mimeType": "multipart/form-data",
+  "data": form
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+</script>
+</apex:page>

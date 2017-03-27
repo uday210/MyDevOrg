@@ -1,0 +1,10 @@
+<apex:page controller="paypal_pay_con" showHeader="false" sidebar="false">
+<apex:form >
+Amount : <apex:inputText value="{!Amount}" disabled="{!isdisabled }"/><br/>
+<apex:commandLink action="{!PaypalCall}">
+<img src="http://unicornomy.com/wp-content/uploads/2016/10/Paypal.png" width="10%"/>
+</apex:commandLink> <br/>
+
+
+</apex:form>
+</apex:page>

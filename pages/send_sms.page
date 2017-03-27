@@ -1,0 +1,7 @@
+<apex:page controller="sendsms">
+<apex:form >
+Phone Number: <apex:inputText value="{!num}"/><br/>
+Message     :<apex:inputTextarea value="{!msg}"/><br/>
+<apex:commandButton value="send sms" action="{!send}"/>
+</apex:form>
+</apex:page>

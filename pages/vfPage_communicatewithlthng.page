@@ -1,0 +1,23 @@
+<apex:page >
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Thsi Vf page can Communicate with Lightning component and Respond to the Events</h1>
+
+
+
+
+<script>
+    var lexOrigin = "https://newworld-dev-ed.lightning.force.com";
+    window.addEventListener("message", function(event) {
+        if (event.origin !== lexOrigin) {
+            // Not the expected origin: reject message!
+            alert("no");
+            return;
+        }
+        // Handle message
+        alert(event.data);
+        console.log(event.data);
+    }, false);
+</script>
+
+
+</apex:page>

@@ -1,0 +1,56 @@
+<apex:page controller="FlipkartrAffiliate" standardStylesheets="false" sidebar="false">
+ <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+</style>
+  <apex:form >
+  <apex:commandButton value="get" action="{!getflipartdata}"/>
+  <br/>
+  <apex:repeat value="{!fkn}" var="eachis">
+  
+   <apex:variable value="{!0}" var="i"/>
+   <apex:repeat value="{!eachis.imageUrls}" var="eachimage">
+ <apex:outputPanel rendered="{!i==0}">
+  <img src="{!eachimage.url}" class="img-rounded" alt="Cinque Terre" width="100px"/><br/>
+  </apex:outputPanel>
+  <apex:variable var="i" value="{!i+1}"/>
+    </apex:repeat>
+  <br/>
+  </apex:repeat>
+  </apex:form>
+  
+  <apex:form >
+  <apex:inputText value="{!queryis}"/>
+  <apex:commandButton action="{!getflipartdatasearch}" value="Serach"/> <br/>
+  
+<div class="container">
+  <div class="row">
+  <apex:repeat value="{!fp.productInfoList}" var="eachis">
+  <!-----new code----->
+ 
+  <!----en dof new code---->
+  
+  
+   <div class="col-sm-3 col-md-6 col-lg-4" style=" width: 25%;" extensions="ForceUIExtension">
+<div class="card" style="">
+  <img src="{!eachis.ProductBaseInfo.productAttributes.imageUrls.unknown}" class="img-responsive" />
+  <div class="container1">
+    <h4><b>Price : {!eachis.ProductBaseInfo.productAttributes.MaximumRetailPrice.amount} Rs/-</b></h4> 
+    <p>Color : {!eachis.ProductBaseInfo.productAttributes.color}</p> 
+      <p>Discount : {!eachis.ProductBaseInfo.productAttributes.discountPercentage} %</p> 
+      <div class="chip">
+      <a href='{!eachis.ProductBaseInfo.productAttributes.productUrl}' target="_blank">Buy Now</a>
+      </div>
+  </div>
+</div>
+</div>
+
+  </apex:repeat>
+  </div>
+</div>
+
+
+  </apex:form>
+</apex:page>

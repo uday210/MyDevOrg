@@ -1,0 +1,152 @@
+<apex:page controller="stripe_pay"  sidebar="false" showHeader="false">
+
+  
+  
+  <html lang="en">
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+     
+        </div>
+      </div>
+      <!-- Simple Bootstrap payment form starts here -->
+      <!-- Use Jquery in this example -->
+      <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+      <!-- Bootstrap JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+      <!-- Stripe.js to collect payment details -->
+      <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+      <!-- Jquery payment library for nicer formatting -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/1.4.1/jquery.payment.js"></script>
+      <script>
+        // Set your Stripe publishable API key here
+        
+  Stripe.setPublishableKey('pk_test_K626hQbcq4xt2lVNKoY9yQK2');
+        $(function() {
+          var $form = $('#payment-form');
+          $form.submit(function(event){
+         // alert();
+            // Disable the submit button to prevent repeated clicks:
+            $form.find('.submit').prop('disabled', true).html('Please wait...');
+            // Request a token from Stripe:
+            Stripe.card.createToken($form, stripeResponseHandler);
+            // Prevent the form from being submitted:
+            return false;
+          });
+          // Format the card number
+          $('#number').payment('formatCardNumber');
+        });
+        function stripeResponseHandler(status, response){
+          var $form = $('#payment-form');
+          // Clear any existing errors
+          $form.find('.has-error').removeClass('has-error')
+          if (response.error){
+            // Show the errors on the form
+            $form.find('.payment-errors').text(response.error.message).addClass('alert alert-danger');
+            $form.find('#' + response.error.param).parents('.form-group').addClass('has-error');
+            $form.find('button').prop('disabled', false).text('Pay $201'); // Re-enable submission
+          } 
+          else { // Token was created!
+            // Get the token ID:
+            var token = response.id;
+            // Insert the token into the form so it gets submitted to the server:
+           // alert(token);
+            console.log(response)
+            $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+            $( "input[id$='tkn']" ).val(token);
+         //  alert(  $( "input[id$='tkn']" ).val());
+            stripe_success();
+            // Submit the form:
+           // $form.get(0).submit();
+          }
+        }
+      </script>
+      <apex:form id="form" >
+     
+      
+      <br/>
+      >>>>> {!sf.balance_transaction}<br/>
+      >>>>> {!sf.id}<br/>
+      >>>>> {!sf.status}
+      <apex:outputText rendered="{!IF(Erroris !=null,True,False)}">
+      Error :
+      >> {!Erroris }
+      </apex:outputText>
+      </apex:form>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="panel panel-default">
+            <div class="panel-body">
+             <apex:form >
+              <apex:inputHidden value="{!tokenis}" id="tkn"/>
+      <apex:actionFunction name="stripe_success" action="{!RedirectPaypalSuccess}">
+      </apex:actionFunction>
+     
+              <div class="row">
+             <div class="col-md-12">
+      <div class="col-md-12 col-sm-12 col-xs-4">
+                    <div class="form-group">
+     <label>Amount</label><apex:inputText value="{!Amount_pay}" styleClass="form-control input-lg" disabled="{!isdisabled }"/><br/>
+      </div>
+      </div>
+      </div>
+      </div>
+       </apex:form>
+              <form action="" method="POST" id="payment-form">
+                <div class="payment-errors"></div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Cardholder Name</label>
+                      <input class="form-control input-lg" id="name" data-stripe="name" type="text" placeholder="Jimmy Dean" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Card Number</label>
+                      <input class="form-control input-lg" id="number" type="tel" size="20" data-stripe="number" placeholder="4242 4242 4242 4242" />
+                    </div>
+                  </div></div>
+                <div class="row">
+                  <div class="col-md-3 col-sm-3 col-xs-4">
+                    <div class="form-group">
+                      <label>Exp Month</label>
+                      <input class="form-control input-lg" id="exp_month" type="tel" size="2" data-stripe="exp-month" placeholder="01" />
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-xs-4">
+                    <div class="form-group">
+                      <label>Exp Year</label>
+                      <input class="form-control input-lg" id="exp_year" type="tel" size="4" data-stripe="exp-year" placeholder="2020" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-3 col-xs-4">
+                    <div class="form-group pull-right">
+                      <label>CVC</label>
+                      <input class="form-control input-lg" id="cvc" type="tel" size="4" data-stripe="cvc" placeholder="555" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button class="btn btn-lg btn-block btn-success submit" type="submit">Pay</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Simple Bootstrap payment form ends here -->
+    </div>
+  </body>
+</html>
+</apex:page>

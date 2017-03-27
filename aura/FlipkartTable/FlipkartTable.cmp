@@ -1,0 +1,36 @@
+<aura:component controller="FKartData" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+	  <aura:attribute name='searchdata' type='string'/>  
+    <aura:attribute name="flipkartData" type="ProductWrapper[]"/>
+    <center>
+        
+     <ui:inputText value='{!v.searchdata}' placeholder='serach' class='slds-input' />
+       
+        <ui:button label="Get search Data" press="{!c.getEcomData}"/>
+    </center>
+    
+    
+    <aura:iteration items="{!v.flipkartData}" var="dat" >
+        
+   
+        
+        <div class="slds-grid">
+  <div class="slds-col">
+    <div class="slds-box slds-box--small slds-theme--shade slds-text-align--center">
+       
+        
+        <figure class="slds-image slds-image--card">
+     <img src="{!dat.ProductImage}" style="    max-width: 30%;"></img>
+           Price : {!dat.ProductPrice }
+            Stripe_pay
+  <a href="{!'https://vsmycommunity-developer-edition.ap2.force.com/myTest/apex/Paypal_payment?price='+dat.ProductPrice}" class="slds-button">buy Now</a>
+            <a href="{!'https://vsmycommunity-developer-edition.ap2.force.com/myTest/apex/Stripe_pay?price='+dat.ProductPrice}" class="slds-button">buy Now</a>
+            
+ 
+</figure>
+      </div>
+  </div>
+  
+</div>
+    </aura:iteration>
+	
+</aura:component>

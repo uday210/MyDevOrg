@@ -1,0 +1,49 @@
+<apex:page controller="PartnerRequestJ" sidebar="False" >
+	
+		<apex:includescript value="//code.jquery.com/jquery-1.12.4.js" / >
+		<apex:includescript value="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" />
+       
+        <apex:includescript value="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js" />
+        <apex:includescript value="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js" />
+		<apex:stylesheet value="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+  
+            <apex:stylesheet value="https://cdn.datatables.net/select/1.2.1/css/select.dataTables.min.css" />
+         
+		<script>
+			var editor;
+ 				$(document).ready(function() {
+
+    $('#example').DataTable( {
+        dom: "Bfrtip",
+        order: [ 1, 'asc' ]
+    } );
+} );
+		</script>
+           
+	<body>
+		<table id="example" class="display" cellspacing="0" width="100%" >
+			<thead>
+				<tr>
+					<th>Account Created</th>
+					<th>City</th>
+					<th>Business Acceptance Status</th>
+                    <th>Company Name</th>
+					<th>Connection Id</th>
+                    <th>Duplicate Check</th>
+				</tr>
+			</thead>
+			<tbody>
+         <apex:repeat value="{!partnerrec}" var="prnt">
+        <tr>
+            <td>{!prnt.Accoutn_Created__c}</td>
+            <td>{!prnt.City__c}</td>
+            <td>{!prnt.Business_Acceptence__c}</td>
+            <td>{!prnt.Company__c}</td>
+            <td>{!prnt.ConnectionReceivedId}</td>
+            <td>{!prnt.Duplicate_Check__c}</td>
+                </tr> 
+    </apex:repeat>
+           </tbody>
+          </table>
+    </body>
+</apex:page>

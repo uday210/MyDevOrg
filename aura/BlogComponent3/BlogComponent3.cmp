@@ -1,0 +1,10 @@
+<aura:component >
+    <h1>Component - 3 -with Javascript Controller</h1>
+    
+    <aura:attribute name='setoninit' type='String' default='default value'/>
+ 
+    <aura:handler name='init' value="{!this}" action="{!c.doInit}"/>
+    <p>this value is set in the controller after component initializes and before rendering</p>
+    <p><b>{!v.setoninit}</b></p>
+	
+</aura:component>

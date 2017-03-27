@@ -1,0 +1,12 @@
+<apex:page controller="PaypalPayment_Accept" action="{!ApproveData}">
+<h1>Payment Is Success</h1>
+
+{!paypalApp.state } <br/>
+
+{!paypalApp.transactions[0].amount.total} <br/>
+
+
+Please refer it For Future references :{!paypalApp.id}
+
+
+</apex:page>

@@ -1,0 +1,42 @@
+<apex:page controller="searchCon">
+<apex:form >
+<apex:actionFunction action="{!gerAccs}" name="mtaction"/>
+<apex:pageBlock >
+
+<apex:pageBlockSection >
+
+<apex:inputText value="{!serachkey}" onkeyup="mtaction()"/>
+
+</apex:pageBlockSection>
+
+</apex:pageBlock>
+
+<apex:pageBlock >
+<apex:repeat value="{!bulkdata}" var="a">
+
+Name: <apex:inputText value="{!a.name}"/>&nbsp;&nbsp;&nbsp; Age: <apex:inputText value="{!a.age}"/>
+
+<br/><br/>
+
+</apex:repeat>
+<apex:commandButton value="Add new " action="{!add}"/>&nbsp;&nbsp;&nbsp;
+<apex:commandLink value="save" action="{!saveall}"/>&nbsp;&nbsp;&nbsp;
+<apex:commandButton value="show data " action="{!showdata}"/>
+
+</apex:pageBlock>
+
+
+
+<apex:pageBlock rendered="{!show}">
+
+<apex:repeat value="{!bulkdata}" var="a">
+
+Name: <apex:outputText value="{!a.name}"/>&nbsp;&nbsp;&nbsp; Age: <apex:outputText value="{!a.age}"/>
+
+<br/><br/>
+
+</apex:repeat>
+</apex:pageBlock>
+</apex:form>
+
+</apex:page>

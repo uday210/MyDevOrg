@@ -1,0 +1,19 @@
+<apex:page controller="MultiAccSave_ctrl">
+ <apex:form > 
+  <apex:pageBlock >
+   
+  <apex:commandButton action="{!AddNewRow}" value="Add Row"/>
+     <table>
+          <apex:repeat value="{!AllAccs }" var="eachAcc">
+          <tr>
+          <td><apex:inputField value="{!eachAcc.Name}"/></td><td> <apex:inputField value="{!eachAcc.Piclist_1__c}"/></td><td> <apex:inputField value="{!eachAcc.Piclist_2__c}"/></td><td> <apex:inputField value="{!eachAcc.Piclist_3__c}"/></td>
+          </tr>
+          </apex:repeat>
+  
+  </table>
+ 
+  <apex:commandButton action="{!save_recrds}" value="Save"/>
+
+  </apex:pageBlock>
+  </apex:form>
+</apex:page>

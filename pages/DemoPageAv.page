@@ -1,0 +1,21 @@
+<apex:page controller="democlassAv">
+<apex:form >
+
+        Hi My Name is : {!Username}
+        
+        <apex:commandButton value="Change User name" action="{!changeName}"/>
+        
+        
+        <div>
+        
+        Account Name : <apex:inputField value="{!Acc.Name}"/> <br/>
+        Industry : <apex:inputField value="{!Acc.Industry}"/> 
+        
+        <apex:commandButton value="Click To Save"  action="{!saeAccount}"/>
+        
+        </div>
+        
+        
+        
+</apex:form>
+</apex:page>

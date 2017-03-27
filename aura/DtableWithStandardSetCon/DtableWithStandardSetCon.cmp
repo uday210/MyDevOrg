@@ -1,0 +1,18 @@
+<aura:component controller="DataTableHelperforLtgCmp" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+
+    
+    <aura:attribute name="AllContacts" type="list" />
+    <aura:attribute name="lrec" type="string" default="initial"/>
+    <aura:attribute name="FiRec" type="string" default="initial"/>
+    <aura:attribute name="Moving" type="string" default="forward"/>
+    <aura:handler value="{!this}" name="init" action="{!c.doinit}"/>
+    
+    <ui:button press="{!c.doPrev}" label="Previous"/>  &nbsp;&nbsp;
+  <ui:button press="{!c.doNext}" label="next "/>      &nbsp;&nbsp;  
+    <br/> First Record is >>>> {!v.FiRec}  <br/> 
+Last Records is >>> {!v.lrec}
+    <aura:iteration items="{!v.AllContacts}" var="eachPr">
+    
+    </aura:iteration>
+	
+</aura:component>

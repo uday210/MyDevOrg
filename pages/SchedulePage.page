@@ -1,0 +1,6 @@
+<apex:page controller="myclass">
+    <apex:form >
+  Schedule Account Creation :<apex:commandButton action="{!schedulemethod}" value="Schedule"/>
+  
+  </apex:form>
+</apex:page>

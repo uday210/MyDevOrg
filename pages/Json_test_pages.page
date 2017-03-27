@@ -1,0 +1,17 @@
+<apex:page controller="jsontestclass">
+
+ <apex:form >
+ 
+ <apex:commandLink value="save" action="{!doPost}"/>
+ 
+ 
+ <apex:pageBlock >
+
+ <apex:repeat value="{!alldatais}" var="data">
+ {!alldatais[0]}
+ </apex:repeat>
+
+ </apex:pageBlock>
+ </apex:form>
+  
+</apex:page>

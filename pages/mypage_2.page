@@ -1,0 +1,5 @@
+<apex:page controller="mypage2Con">
+  <apex:form >
+      <apex:commandLink action="{!printdata2}" value="print 2"/>
+  </apex:form>
+</apex:page>

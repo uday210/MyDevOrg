@@ -1,0 +1,5 @@
+<apex:page controller="mypage1con">
+  <apex:form >
+      <apex:commandLink action="{!printData}" value="print" target="_blank"/>
+  </apex:form>
+</apex:page>

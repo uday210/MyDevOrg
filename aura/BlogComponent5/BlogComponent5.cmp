@@ -1,0 +1,18 @@
+<aura:component controller="LightningHelper">
+    <aura:handler name='init' value='{!this}' action='{!c.doInit}'/>
+    <aura:attribute name='listAccounts' type='object'/>
+    <h1>Component 5 Apex Integration</h1>
+    
+    <ul>
+    	<aura:iteration items='{!v.listAccounts}' var='currentItem'>
+            <li><ui:outputText value="{!currentItem.Name}"/>
+        	<ul>
+            	<aura:iteration items="{!currentItem.Contacts}" var="currentContact">
+                    <li><ui:outputText value='{!currentContact.Name}'/></li>
+                
+                </aura:iteration>
+            </ul>
+                </li>
+        </aura:iteration>
+    </ul>
+</aura:component>

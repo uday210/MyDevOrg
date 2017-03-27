@@ -1,0 +1,35 @@
+<apex:page controller="globalDescribe">
+ <apex:form >
+<apex:pageBlock id="pgblck">
+    <apex:outputlabel value="Object Name" for="ObjPickList"/>      
+    <apex:selectList value="{!ObjIs }" multiselect="false" id="ObjPickList" size="1">
+       <apex:selectOptions value="{!ObjList}"/>
+    </apex:selectList>
+    
+ <apex:commandButton value="Describe" action="{!getMydata}"/>
+ <apex:commandLink rendered="{!ShowTable }" value="Get XLS File" action="{!getxlsFile}"/> &nbsp;&nbsp;&nbsp;&nbsp;
+ <apex:commandLink rendered="{!GetTemplateForBulApi}" value="Get Bulk Api template" action="{!getBulkApiTemplateFile}"/>
+ </apex:pageBlock>
+ 
+ <apex:pageBlock rendered="{!ShowTable }">
+ <table border='1'>
+ <thead>
+ <th>Field Label</th>
+ <th>Field Api Name</th>
+ <th>Field Type</th>
+ <th>Pick List Values</th>
+ </thead>
+ <apex:repeat value="{!Alldata }" var="eachfield">
+ <tr>
+ <td>{!eachfield.FieldLabel }</td>
+ <td>{!eachfield.fieldName}  </td>
+ <td>{!eachfield.fieldType}  </td>
+ <td>{!eachfield.picklistValues }</td>
+ 
+ </tr>
+ </apex:repeat>
+ 
+ </table>
+ </apex:pageBlock>
+ </apex:form>
+</apex:page>

@@ -1,0 +1,26 @@
+<apex:page controller="CustomPaginationDemo" showHeader="false" sidebar="false">
+<apex:form id="ThePage">
+<apex:pageBlock >
+<apex:pageBlockSection >
+<apex:pageBlockTable value="{!lstSetController }" var="obj" >
+<apex:column headerValue="Select">
+<apex:inputCheckbox value="{!obj.isSelected}"/>
+</apex:column>
+<apex:column >
+<apex:facet name="header">
+<apex:commandLink value="Name " action="{!sortWrpLst}" reRender="ThePage">
+    <apex:param name="compareField" value="Name" assignTo="{!compareField}" />
+    <apex:param name="orderType" value="{!IF(sortOrder='asc', 'desc', 'asc')}" assignTo="{!sortOrder}" />
+</apex:commandLink>
+</apex:facet>
+<apex:outputField value="{!obj.cont.Name}"/>
+</apex:column>
+</apex:pageBlockTable>
+<apex:outputPanel >
+<apex:commandButton value="<===" action="{!previous}" disabled="{!!hasPrevious}" reRender="ThePage" />
+<apex:commandButton value="===>" action="{!next}" disabled="{!!hasNext}" reRender="ThePage" />
+</apex:outputPanel>
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

@@ -1,0 +1,9 @@
+<apex:page controller="myPaytmCon">
+  <apex:form >
+      <apex:outputText value="{!paytmpg }" escape="false"/>
+      
+      
+      
+      <apex:commandButton value="Order Now" action="{!gitpaytm}"/>
+  </apex:form>
+</apex:page>

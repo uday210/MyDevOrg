@@ -1,0 +1,82 @@
+<apex:page controller="formDisplayCon" standardStylesheets="false" sidebar="false" showHeader="false">
+
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        padding-bottom: 10px;
+      }
+      #components{
+        min-height: 600px;
+        margin-top: 5px;
+      }
+      #target{
+        min-height: 200px;
+        border: 1px solid #ccc;
+        padding: 5px;
+      }
+      #target .component{
+        border: 1px solid #fff;
+      }
+      #temp{
+        width: 500px;
+        background: white;
+        border: 1px dotted #ccc;
+        border-radius: 10px;
+      }
+
+      .popover-content form {
+        margin: 0 auto;
+        width: 213px;
+      }
+      .popover-content form .btn{
+        margin-right: 10px
+      }
+      #source{
+        min-height: 500px;
+      }
+
+    </style>
+  
+    <apex:stylesheet value="{!URLFOR($Resource.formbuilder, 'js/bootstrap.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.formbuilder, 'js/bootstrap-responsive.min.css')}"/>
+    <div class="col-md-7 col-md-offset-2">
+ <apex:outputText value="{!FormHtml}" escape="false"></apex:outputText>
+ </div>
+  <script src="{!URLFOR($Resource.formbuilder, 'js/jquery.min.js')}"></script>
+ 
+ <script>
+ function formsubmit(){
+ 
+ console.log('========== data Saving ==========');
+ var Answers ='';
+         
+ $('.Answer').each(function(){
+  
+        console.log('Question Type ',$(this)[0].dataset.fieldtype); 
+        console.log( 'Question :' ,$(this).parents().prev().find('.Question').prevObject[0].innerHTML);
+         console.log($(this)[0].value);
+         
+         var eachAnswer =  "\"Question\""+":\""+$(this).parents().prev().find('.Question').prevObject[0].innerHTML+"\""+','+"\"Answer\""+':\"'+$(this)[0].value+"\""+','+"\"Question_Type\""+':\"'+$(this)[0].dataset.fieldtype+"\"";
+         
+     Answers +=eachAnswer+'#123' ;    
+         
+         
+         
+ 
+ });
+ 
+ console.log(Answers);
+ 
+ var AnswerString = Answers;
+             Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.formDisplayCon.saveAnswers}', AnswerString ,'{!FormId}',
+         
+                 function(result, event){
+                 
+                 alert('success');
+                 location.reload();
+                 
+                 });
+ 
+ }
+ </script>
+</apex:page>

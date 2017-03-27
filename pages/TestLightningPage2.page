@@ -1,0 +1,31 @@
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false">
+    
+    <apex:includeLightning />
+    <div >
+     <div class="slds" style="margin-top:10px;margin-left:10px;width:100%">
+    <div id="App1" />
+
+    </div>
+    
+    </div>
+    <script>
+    
+    
+
+     $Lightning.use("c:NewLightningAppTest", function() {
+
+          $Lightning.createComponent("c:NewLightningApp2",{},
+
+          "App1",
+
+        function(cmp) {
+
+            // do some stuff
+
+          });
+
+        });
+
+    
+    </script>
+</apex:page>

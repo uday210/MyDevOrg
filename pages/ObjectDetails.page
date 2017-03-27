@@ -1,0 +1,21 @@
+<apex:page controller="globalDescribe"  contentType="application/vnd.ms-excel#{!ObjIs}.xls" cache="true">
+   
+  <table border='1'>
+ <thead>
+ <th>Field Label</th>
+ <th>Field Api Name</th>
+ <th>Field Type</th>
+ <th>Pick List Values</th>
+ </thead>
+ <apex:repeat value="{!Alldata }" var="eachfield">
+ <tr>
+ <td>{!eachfield.FieldLabel }</td>
+ <td>{!eachfield.fieldName}  </td>
+ <td>{!eachfield.fieldType}  </td>
+ <td>{!eachfield.picklistValues }</td>
+ 
+ </tr>
+ </apex:repeat>
+ 
+ </table>
+</apex:page>

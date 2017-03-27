@@ -1,0 +1,3 @@
+<apex:page renderAs="pdf">
+ Hello Uday
+</apex:page>

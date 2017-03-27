@@ -1,0 +1,5 @@
+<aura:component controller="EinsteinvisionService_ctrl" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <ui:inputText aura:id="dataPath" label="Put Data Model URL" />
+    <ui:button press="{!c.docallout}" label="upload"/>
+</aura:component>

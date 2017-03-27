@@ -1,0 +1,10 @@
+<aura:component controller="restcontroller" access="global">
+    
+    <form>        
+
+            <ui:inputText aura:id="email" value="Email" label="Email" class="form-control"/>
+    <ui:button aura:id="button1" label="Send" press="{!C.buttonpress}" />
+
+        </form>
+	
+</aura:component>

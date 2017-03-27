@@ -1,0 +1,9 @@
+<apex:page standardController="Account">
+    <apex:form >
+    <apex:pageblock title="Display Account data">
+        <b>name:</b>{!Account.name}<br/>
+         <b>phone:</b>{!Account.phone}<br/>
+         <b>fax:</b>{!Account.fax}<br/>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

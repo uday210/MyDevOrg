@@ -1,0 +1,49 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+
+    <aura:attribute name="wrapperClass" type="list" description="Reference to the internal class." /> 
+ 	<aura:attribute name="dataexists" type="Boolean" default="false"/>
+    <ui:inputText aura:id="name" label="Enter Key :" placeholder="search" />
+ <ui:button aura:id="button" buttonTitle="Click to see what you put into the field" class="button" label="Click me" press="{!c.getInput}"/>
+  <aura:if isTrue="{!v.dataexists}">
+
+    <ui:inputSelect aura:id="recordSize" label="Display Record Per Page: " change="{!c.onSelectChange}">
+            <ui:inputSelectOption text="10" label="10" value="true"/>
+            <ui:inputSelectOption text="15" label="15"/>
+            <ui:inputSelectOption text="20" label="20"/>
+         </ui:inputSelect>
+      <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+  <thead>
+    <tr class="slds-text-title--caps">
+      <th scope="col">
+        <div class="slds-truncate" title="Name">Name</div>
+      </th>
+      <th scope="col">
+        <div class="slds-truncate" title="City">City</div>
+      </th>
+      <th scope="col">
+        <div class="slds-truncate" title="Phone">Phone</div>
+      </th>
+    </tr>
+  </thead>
+<tbody>
+    <aura:iteration var="each" items="{!v.wrapperClass}">
+ 
+    <tr>
+      <th scope="row" data-label="Name">
+        <div class="slds-truncate" title="Name">{!each.Name}</div>
+      </th>
+      <td data-label="City">
+        <div class="slds-truncate" title="City">{!each.City}</div>
+      </td>
+      <td data-label="Phone">
+        <div class="slds-truncate" title="phone">{!each.Phone}</div>
+      </td>
+      
+    </tr>
+   
+
+</aura:iteration>
+  </tbody>
+</table>
+    </aura:if>
+</aura:component>

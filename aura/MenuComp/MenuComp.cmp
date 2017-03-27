@@ -1,0 +1,11 @@
+<aura:component >
+    <aura:attribute name="contacts" type="String[]" default="All,Primary,Secondary"/>
+    <ui:menu >
+        <ui:menuTriggerLink label="Select Contact"/>
+        <ui:menuList >
+            <aura:iteration var="contact" items="{!v.contacts}">
+                <ui:actionMenuItem label="{!contact}"/>
+            </aura:iteration>
+        </ui:menuList>
+    </ui:menu>
+</aura:component>

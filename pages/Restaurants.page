@@ -1,0 +1,7 @@
+<apex:page controller="getreastaurantscon">
+  
+    <apex:form >
+        <apex:commandButton value="get" action="{!getResdata}"/> <br/>
+        {!Resdata }
+    </apex:form>
+</apex:page>

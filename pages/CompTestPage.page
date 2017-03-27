@@ -1,0 +1,4 @@
+<apex:page >
+  
+  <c:Comp1 record="Account"/>
+</apex:page>

@@ -1,0 +1,32 @@
+<apex:page >
+ <apex:includeScript value="/lightning/lightning.out.js" />
+ 
+ <script>
+        $Lightning.use("c:BlogApp", function() {
+            $Lightning.createComponent(
+                "c:BlogComponentMaster",
+                {},
+                "theBlog",
+                function(cmp) {
+                    console.log("Component created!");
+                    console.log(cmp);
+                });
+            });
+            
+            $Lightning.use("c:BlogApp", function() {
+            $Lightning.createComponent(
+                "c:BlogComponentMaster",
+                {},
+                "theBlog1",
+                function(cmp) {
+                    console.log("Component created!");
+                    console.log(cmp);
+                });
+            });
+    </script>
+    
+    <div id="theBlog"></div>
+    
+    <br/>
+        <div id="theBlog1"></div>
+</apex:page>

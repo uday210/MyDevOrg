@@ -1,0 +1,19 @@
+<apex:page standardController="Account"  extensions="Newaccounts">
+     <apex:form >
+         <apex:pageBlock >
+             <apex:pageBlockSection >
+                 <apex:commandButton action="{!Save}" value="save" immediate="true"  /><br/>
+             </apex:pageBlockSection>
+             <apex:pageblockSection >
+             <apex:inputField value="{!Account.name}"/>
+             <apex:inputfield value="{!Account.Phone}" />
+             <apex:inputField value="{!Account.Rating}"/>
+             <apex:inputfield value="{!Account.AnnualRevenue}" />       
+             </apex:pageblockSection>
+             <apex:pageBlockSection >
+                 <apex:commandButton value="Add New"/>  <br/> 
+                 <apex:commandButton value="Add New"/>   <br/>             
+             </apex:pageBlockSection>
+         </apex:pageBlock>
+     </apex:form>               
+</apex:page>

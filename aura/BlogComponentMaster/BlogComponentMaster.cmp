@@ -1,0 +1,15 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" >
+    <h1>Blog Component - Master</h1>
+    <c:BlogComponent1 />
+    <c:BlogComponent2 />
+    
+    component 2 loaded second time in mastercomponent
+    
+    <c:BlogComponent2 greeting='msg changed' second='heelo ooooo'/>
+    
+    <c:BlogComponent3 />
+    <c:BlogComponent3 setoninit='changed in master'/><br/>
+    <c:BlogComponent4 /><br/>
+    
+     <c:BlogComponent5 />
+</aura:component>

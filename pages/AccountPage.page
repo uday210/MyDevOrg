@@ -1,0 +1,7 @@
+<apex:page controller="AccountPageCon" >
+<apex:form >
+<apex:inputText value="{!name}"/>
+<apex:commandButton action="{!inserAcc}" value="save Account" reRender="tt"/>
+<apex:outputLabel id="tt"> Accout {!name} is created </apex:outputLabel>
+</apex:form>
+  </apex:page>

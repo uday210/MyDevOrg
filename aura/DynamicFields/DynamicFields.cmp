@@ -1,0 +1,332 @@
+<aura:component controller="myDynamicForm" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="Partner_sectionTab"  default="true"  type="boolean"/>
+    <aura:attribute name="ContactTab"          default="false" type="boolean"/>
+    <aura:attribute name="CompanyTab"          default="false" type="boolean"/>
+    <aura:attribute name="FocusTab"            default="false" type="boolean"/>
+    <aura:attribute name="SegmentTab"          default="false" type="boolean"/>
+    <aura:attribute name="ServiceTab"          default="false" type="boolean"/>
+    <aura:attribute name="CompleteTab"         default="false" type="boolean"/>
+    <aura:attribute name="SubmitButton"        default="false" type="boolean"/>
+    <aura:attribute name="ShowContinueNext"    default="true"  type="boolean"/>
+    
+	
+	<aura:attribute name="Sel_country"		 type="boolean" default="false" />
+    <aura:attribute name="Salutationis"  	 type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="firstNameis"       type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="Lastnameis"        type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="jobCategoryis"     type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="jobtitleis"        type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="Address1is"        type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="Cityis"            type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="stateis"           type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="PostalCodeis"      type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="Phoneis"           type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="MobilePhoneis"     type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="Emailis"           type="myDynamicForm.filedConfig"/>
+    
+    
+    
+    <aura:attribute name="Companyis" 					default="true" type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="HeadoftheCompanyis" 			default="true" type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="HeadoftheCompanyTitleis" 		default="true" type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="FormofOrganizationis" 		default="true" type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="Websiteis" 					default="true" type="myDynamicForm.filedConfig"/>
+    <aura:attribute name="Numberofyearsinbusinessis" 	default="true" type="myDynamicForm.filedConfig"/>
+    
+    
+    <aura:attribute name="myPr" type="Partner_request__c" default="{ 'sobjectType': 'Partner_request__c' }"/>
+  
+    
+    <aura:attribute name="CreatedPrId" default="Please Wait for Reference Id " type="String"/>
+    <aura:attribute name="RequiredFieldsMissing" default="false" type="boolean"/>
+    <aura:attribute name="RegionIs" default="" type="String"/>
+    <aura:attribute name="countrydata" type="Object" />
+    
+    <aura:attribute name="contacttabReqFields" type="Object" />
+    
+<div class=" slds-grid" role="banner">
+<div class=" slds-size--1-of-2 slds-medium-size--5-of-6 slds-large-size--2-of-12">
+  &nbsp;  </div>
+    <div class="slds-tabs--scoped slds-size--1-of-2 slds-medium-size--5-of-6 slds-large-size--8-of-12">
+   
+        <ul class="slds-tabs--scoped__nav" role="tablist">
+    
+            <li class="{!v.Partner_sectionTab==true?'slds-tabs--default__item slds-active':'slds-tabs--default__item'}" title="Partner Section" role="presentation"> <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">	<lightning:icon iconName="utility:groups" size="x-small" alternativeText="Indicates approval"/>&nbsp;&nbsp;Partner Section</a></li>
+    		<li class="{!v.ContactTab==true?'slds-tabs--default__item slds-active':'slds-tabs--default__item'}" title="Contact" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item"><lightning:icon iconName="utility:call" size="x-small" alternativeText="Indicates approval"/>&nbsp;&nbsp;Contact</a></li>
+    		<li class="{!v.CompanyTab==true?'slds-tabs--default__item slds-active':'slds-tabs--default__item'}" title="Company" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item"><lightning:icon iconName="utility:company" size="x-small" alternativeText="Indicates approval"/>&nbsp;&nbsp;Company</a></li>
+    		<li class="{!v.FocusTab==true?'slds-tabs--default__item slds-active':'slds-tabs--default__item'}" title="Focus" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-4" id="tab-default-4__item"><lightning:icon iconName="utility:search" size="x-small" alternativeText="Indicates approval"/>&nbsp;&nbsp;Focus</a></li>
+    		<li class="{!v.SegmentTab==true?'slds-tabs--default__item slds-active':'slds-tabs--default__item'}" title="Segment" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-5" id="tab-default-5__item"><lightning:icon iconName="utility:process" size="x-small" alternativeText="Indicates approval"/>&nbsp;&nbsp;Segment</a></li>
+    		<li class="{!v.ServiceTab==true?'slds-tabs--default__item slds-active':'slds-tabs--default__item'}" title="Service" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-6" id="tab-default-6__item"><lightning:icon iconName="utility:custom_apps" size="x-small" alternativeText="Indicates approval"/>&nbsp;&nbsp;Service</a></li>
+    		<li class="{!v.CompleteTab==true?'slds-tabs--default__item slds-active':'slds-tabs--default__item'}" title="Complete" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-7" id="tab-default-6__item"><lightning:icon iconName="utility:success" size="x-small" alternativeText="Indicates approval"/>&nbsp;&nbsp;Complete</a></li>
+        
+        </ul>
+		
+       <aura:renderIf isTrue="{!v.RequiredFieldsMissing}">
+			<ui:message title="Required Fields Are Missing" severity="error" closable="false">
+					This is a confirmation message.
+			</ui:message>
+        </aura:renderIf>
+     <aura:renderIf isTrue="{!v.Partner_sectionTab}">
+     <div id="tab-default-1" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">
+    <div class="slds-form--stacked slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--5-of-6 slds-large-size--8-of-12">
+    <div class="slds-form-element ">
+     
+        	<label class="slds-form-element__label" for="inputSample2">Country </label>
+        	<div class="slds-form-element__control">
+        	<ui:inputSelect aura:id="Countries" multiple="false" change="{!c.onSelectChange}" class="slds-input input uiInput uiInputText uiInput--default uiInput--input"> 
+			</ui:inputSelect>
+        </div>
+	</div>       
+        
+      <aura:renderIf isTrue="{!v.RegionIs==''?false:true}">
+        <div class="slds-form-element ">
+     
+        	<label class="slds-form-element__label" for="inputSample2">Region </label>
+        	<div class="slds-form-element__control">
+        
+                <ui:inputText class="slds-input input uiInput uiInputText uiInput--default uiInput--input" disabled="true" value="{!v.RegionIs}"/>
+       	    </div>
+	</div>
+    </aura:renderIf>
+      
+        
+</div>
+</div>
+	</aura:renderIf>
+	<aura:renderIf isTrue="{!v.ContactTab}">
+  <div id="tab-default-2" class="slds-tabs--default__content " role="tabpanel" aria-labelledby="tab-default-2__item">
+  second Tab
+
+      <aura:renderIf isTrue="{!v.Salutationis.isRequired}">
+  			<div class="slds-form-element ">
+                <label class="slds-form-element__label" for="inputSample2">Salutation<span class="{!v.Salutationis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+      			
+                    <force:inputField aura:id="salutation_list" value="{!v.myPr.Salutation__c}" class="slds-input input uiInput uiInputText uiInput--default uiInput--input input"/>
+    			</div>
+  			</div>
+  		</aura:renderIf>
+     <aura:renderIf isTrue="{!v.firstNameis.isRequired}">
+  			<div class="slds-form-element ">
+    			<label  class="slds-form-element__label" for="inputSample2">{!$Label.c.FirstName}<span class="{!v.firstNameis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+      	
+                    <force:inputField required="true" class="slds-input input uiInput uiInputText uiInput--default uiInput--input" aura:id="firstName" value="{!v.myPr.First_Name__c}"  />
+    			</div>
+  			</div>
+  		</aura:renderIf>
+        
+        <aura:renderIf isTrue="{!v.Lastnameis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">Last Name<span class="{!v.Lastnameis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+      				<force:inputField class="slds-input input uiInput uiInputText uiInput--default uiInput--input" aura:id="LastName" value="{!v.myPr.Last_Name__c}"  />
+    			</div>
+  			</div>
+  		</aura:renderIf>
+      
+      <aura:renderIf isTrue="{!v.jobCategoryis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">Job Category<span  class="{!v.jobCategoryis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+
+                   <force:inputField aura:id="jobCategory_list" value="{!v.myPr.Job_Category__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input"  />
+    
+    			</div>
+  			</div>
+  		</aura:renderIf>
+        <aura:renderIf isTrue="{!v.Address1is.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">Address 1<span class="{!v.Address1is.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+      				   <force:inputField aura:id="Address1" value="{!v.myPr.Address1__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input"  />
+    
+    			</div>
+  			</div>
+  		</aura:renderIf>
+      
+      <aura:renderIf isTrue="{!v.Cityis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">City<span class="{!v.Cityis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+      				   <force:inputField aura:id="City" value="{!v.myPr.City__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input"  />
+    			</div>
+  			</div>
+  		</aura:renderIf>
+      
+      <aura:renderIf isTrue="{!v.stateis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">State<span class="{!v.stateis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+      					 <force:inputField aura:id="state" value="{!v.myPr.State__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input"  />
+
+    			</div>
+  			</div>
+  		</aura:renderIf>
+			
+		<aura:renderIf isTrue="{!v.PostalCodeis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">PostalCode<span class="{!v.PostalCodeis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+      					 <force:inputField aura:id="PostalCode" value="{!v.myPr.PostalCode__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input"  />
+
+    			</div>
+  			</div>
+  		</aura:renderIf>
+      
+      <aura:renderIf isTrue="{!v.Phoneis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">Phone<span class="{!v.Phoneis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+
+							 <force:inputField aura:id="Phone" value="{!v.myPr.Phone__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input"  />
+
+    			</div>
+  			</div>
+  		</aura:renderIf>
+      
+       <aura:renderIf isTrue="{!v.MobilePhoneis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">Mobile Phone<span class="{!v.MobilePhoneis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+				
+					 <force:inputField aura:id="MobilePhone" value="{!v.myPr.Mobile__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input"  />
+
+    			</div>
+  			</div>
+  		</aura:renderIf>
+        <aura:renderIf isTrue="{!v.Emailis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">Email<span class="{!v.Emailis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+      			
+					 <force:inputField aura:id="Email" value="{!v.myPr.Email__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input"  />
+
+    			</div>
+  			</div>
+  		</aura:renderIf> 
+  </div>
+  </aura:renderIf>
+  	<aura:renderIf isTrue="{!v.CompanyTab}">
+  <div id="tab-default-3" class="slds-tabs--default__content " role="tabpanel" aria-labelledby="tab-default-3__item">
+  <aura:renderIf isTrue="{!v.Companyis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">Company<span class="{!v.Companyis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+
+					 <force:inputField aura:id="Company" value="{!v.myPr.Company__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input"  />
+
+    			</div>
+  			</div>
+  		</aura:renderIf>
+      
+        <aura:renderIf isTrue="{!v.HeadoftheCompanyis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">Head of the Company<span class="{!v.HeadoftheCompanyis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+    
+					 <force:inputField aura:id="HeadoftheCompany" value="{!v.myPr.Head_Of_Company__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input"  />
+
+
+    			</div>
+  			</div>
+  		</aura:renderIf>
+      
+      <aura:renderIf isTrue="{!v.FormofOrganizationis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">Form of Organization<span class="{!v.FormofOrganizationis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+      				 <force:inputField aura:id="FormofOrganization" value="{!v.myPr.Form_Of_Organization__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input"  />
+
+    			</div>
+  			</div>
+  		</aura:renderIf>
+      
+       <aura:renderIf isTrue="{!v.Websiteis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">Website<span class="{!v.Websiteis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+      			
+					 <force:inputField aura:id="Website" value="{!v.myPr.website__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input input"  />
+
+
+    			</div>
+  			</div>
+  		</aura:renderIf>
+      
+      <aura:renderIf isTrue="{!v.Numberofyearsinbusinessis.isRequired}">
+  			<div class="slds-form-element">
+    			<label class="slds-form-element__label" for="inputSample2">Number of years in business<span class="{!v.Numberofyearsinbusinessis.isMandatory ==true?'requiredfield':'notrequired'}" style="color:red;font-size: 18px;">*</span></label>
+    			<div class="slds-form-element__control">
+      	
+					<force:inputField aura:id="Numberofyearsinbusiness" value="{!v.myPr.Number_of_Years_in_Business__c}"  class="slds-input input uiInput uiInputText uiInput--default uiInput--input"  />
+
+    			</div>
+  			</div>
+  		</aura:renderIf>
+  </div>
+ </aura:renderIf>
+ 
+ <aura:renderIf isTrue="{!v.FocusTab}">
+  <div id="tab-default-4" class="slds-tabs--default__content " role="tabpanel" aria-labelledby="tab-default-4__item">
+    <div class="slds-form-element__control">
+    <div class="slds-file-selector slds-file-selector--files">
+      <div class="slds-file-selector__dropzone">
+      <input type="file" class="slds-file-selector__input slds-assistive-text" accept="image/png" id="file-upload-input-01" aria-describedby="file-selector-id" />
+        <label class="slds-file-selector__body" for="file-upload-input-01">
+          <span class="slds-file-selector__button slds-button slds-button--neutral">
+              
+            Upload Files</span>
+       
+        </label>
+         </div>
+         </div>
+         </div>
+  </div>
+ </aura:renderIf>
+ <aura:renderIf isTrue="{!v.SegmentTab}">
+  <div id="tab-default-5" class="slds-tabs--default__content " role="tabpanel" aria-labelledby="tab-default-5__item">
+  Fifth tab
+  </div>
+ </aura:renderIf>
+ 
+ <aura:renderIf isTrue="{!v.ServiceTab}">
+  <div id="tab-default-6" class="slds-tabs--default__content " role="tabpanel" aria-labelledby="tab-default-6__item">
+  Sixth tab
+  </div>
+ </aura:renderIf>
+ 
+ <aura:renderIf isTrue="{!v.CompleteTab}">
+  <div id="tab-default-7" class="slds-tabs--default__content " role="tabpanel" aria-labelledby="tab-default-7__item">
+      Seventh tab <br/>
+       <lightning:icon iconName="action:approval" size="large" alternativeText="Indicates approval"/>  
+      <br/>
+      {!v.CreatedPrId}
+  </div>
+ </aura:renderIf>
+</div >
+
+    </div> 
+        <div class="slds-grid ">
+              <div class="slds-form--stacked slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--5-of-6 slds-large-size--2-of-12">
+            </div>
+      <div class="slds-form--stacked slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--5-of-6 slds-large-size--8-of-12">
+    <div class="slds-form-element ">
+   <aura:renderIf isTrue="{!v.ShowContinueNext}">
+      <aura:renderIf isTrue="{!!v.Partner_sectionTab}">
+    	<ui:button aura:id="buttonPrev" buttonTitle="Previous" class="slds-button slds-button--neutral" label="previous" press="{!c.goPrev}"/>
+      </aura:renderIf>
+     <aura:renderIf isTrue="{!!v.ServiceTab}">
+         
+          <ui:button disabled="false" aura:id="buttonNext" buttonTitle="Continue" class="slds-button slds-button--neutral" label="Continue" press="{!c.goNext}"/>
+     </aura:renderIf> 
+     </aura:renderIf>     
+     <aura:renderIf isTrue="{!v.SubmitButton}">
+          <ui:button aura:id="buttonSubmit" buttonTitle="Submit" class="slds-button slds-button--neutral" label="Submit" press="{!c.doSubmit}"/>
+     </aura:renderIf> 
+ </div>  
+   </div>     
+   </div> 
+</aura:component>

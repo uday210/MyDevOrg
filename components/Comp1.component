@@ -1,0 +1,11 @@
+<apex:component >
+ <apex:attribute name="myattribute" type="String" description="TODO: Describe Me" default="uday"/>
+ <apex:attribute name="record" type="Object" description="Record View"/>
+ 
+ <apex:pageBlock title="viewing {!record}">
+     <apex:detail />
+ </apex:pageBlock>
+ <script>
+ alert("{!myattribute}");
+ </script>
+</apex:component>

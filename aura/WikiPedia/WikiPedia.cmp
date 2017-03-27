@@ -1,0 +1,38 @@
+<aura:component controller='wikisearch' implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <ltng:require styles="/resource/SLDS0122/assets/styles/salesforce-lightning-design-system.css"/>
+    <aura:attribute name='wikitext' type='string'/>
+    <aura:attribute name='resultLimit' type='Integer' default='0'/>
+    
+    
+<div class="slds-card">
+<div class="slds-card__header slds-grid">
+<div class="slds-media slds-media--center slds-has-flexi-truncate">
+<div class="slds-media__figure">
+          </div>
+	<div class="slds-media__body">
+	<h2 class="slds-text-heading--small slds-truncate">Wikipedia Search</h2>
+	      </div> 
+	    </div>
+	  </div>
+	<div class="slds-card__body slds-box slds-theme--default">
+	<div class="slds-grid slds-wrap">
+	<div class="slds-col slds-size--10-of-12">
+        <ui:inputText value='{!v.wikitext}' placeholder='serach' class='slds-input' keyup='{!c.searchwiki}'/>
+        
+	          </div>
+	<div class="slds-col slds-size--2-of-12">
+	            <button class="slds-m-left--small slds-button slds-button--icon-border-filled slds-button--icon-small">
+	              <span class="slds-assistive-text">Settings</span>
+	            </button>
+	          </div>
+	<div class="slds-col slds-size--10-of-12 slds-p-top--large">
+	<ul id="resultPlaceHolder" class="slds-list--vertical slds-has-cards slds-has-inline-block-links--space">
+	                
+	              </ul>
+	          </div>
+	<div class="slds-col slds-size--2-of-12"></div>
+	        </div>
+	      </div>
+</div>
+
+</aura:component>

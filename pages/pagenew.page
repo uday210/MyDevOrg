@@ -1,0 +1,18 @@
+<apex:page Controller="Accountnew" >
+
+<apex:pageBlock >
+
+       <apex:repeat value="{!allaccounts }" var="acc">
+       
+       <h1>Account :</h1>  <apex:outputField value="{!acc.Name}"/><br/>
+       
+       <h2>Contacts :</h2>
+       <apex:repeat value="{!acc.contacts}" var="con">
+               <apex:outputField value="{!con.name}"/> ,
+       </apex:repeat>
+       <br/>
+       </apex:repeat>
+
+</apex:pageBlock>
+ 
+</apex:page>

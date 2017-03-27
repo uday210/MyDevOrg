@@ -1,0 +1,55 @@
+<aura:component implements="force:appHostable">
+    <aura:attribute name="edit" type="Boolean" default="false"/>
+    <aura:attribute name='first' type='String' default='john'/>
+    <aura:attribute name='last' type='String' default='doe'/>
+     <aura:set attribute="body">
+         <center><ui:spinner aura:id="spinner"/></center>
+
+         <ui:inputTextArea aura:id="mytextArea" value="please enter something---!" label="Description" blur="{!c.handleblur}"/>
+         
+         <ui:button aura:id="likeBtn"
+     label="{!(v.likeId == null) ? 'Like It' : 'Unlike It'}"
+     press="{!(v.likeId == null) ? c.likeIt  : c.unlikeIt}"
+/>
+
+<div>Body part</div>
+<ui:button label="Push Me" press="{!c.testAction}"/>
+         
+         
+         <aura:if isTrue="{!v.edit}">
+    <ui:button label="Edit"/>
+    <aura:set attribute="else">
+        You can’t edit this.
+    </aura:set>
+</aura:if>
+
+         <ui:inputText label="first Name" value="{!v.first}" updateOn="keyup" blur="{!c.newblur}"/><br/>
+         <ui:inputText label="last name" value='{!v.last}' updateOn="keyup"/><br/>
+         <ui:outputText value="{!v.first+' '+v.last}"/><br/>
+         <ui:inputText label='text box' aura:id='tbox'/><br/>
+         <ui:outputText aura:id='newval' value=""/>
+         <ui:button aura:id='tbuttton' label='submit' press="{!c.getInput}"/>
+         
+         <div class="uiInput uiInputDate uiInput--default uiInput--input uiInput--datetime">
+  <label class="uiLabel-left form-element__label uiLabel">
+    <span>Birthday</span>
+  </label>
+  <form class="form--stacked form-element">
+      <input placeholder="MMM d, yyyy" type="text"/>
+      <a class="datePicker-openIcon display" aria-haspopup="true">
+          <span class="assistiveText">Date Picker</span>
+      </a>
+  <a class="clearIcon hide">
+    <span class="assistiveText">Clear Button</span>
+  </a>
+  </form>
+</div>
+<div class="DESKTOP uiDatePicker--default uiDatePicker">
+    <!--Date picker set to visible when icon is clicked-->
+</div>
+</aura:set>
+    
+    
+
+	
+</aura:component>

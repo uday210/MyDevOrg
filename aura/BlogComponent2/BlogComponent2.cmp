@@ -1,0 +1,8 @@
+<aura:component >
+    <aura:attribute name='greeting' type='String' default="Hello Uday"/>
+    <aura:attribute name='second' type='String'/>
+    <h1>Component 2  Attributes</h1>
+    <p>{!v.greeting}   this message is value of an attribute</p>
+    <p>second attribute {!v.second}</p>
+	
+</aura:component>

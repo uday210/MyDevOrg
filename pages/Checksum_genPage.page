@@ -1,0 +1,15 @@
+<apex:page controller="checksum_genCon">
+  <apex:form >
+  
+  Order id:<apex:inputText value="{!orderid}"/><br/>
+  cust_id:<apex:inputText value="{!cust_id}"/><br/>
+ Amount :<apex:inputText value="{!amount}"/><br/>
+ 
+ 
+ Check Sum is: {!gen_checkSum} <br/>
+ 
+ 
+ <apex:commandButton value="Pay now" action="{!pay}"/>
+ 
+  </apex:form>
+</apex:page>

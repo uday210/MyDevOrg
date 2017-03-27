@@ -1,0 +1,7 @@
+<apex:page controller="firstpagecon">
+  {!name}
+  <apex:form >
+  <apex:inputText value="{!newname}"/>
+  <apex:commandLink action="{!commonsettings}" value="change"/>
+  </apex:form>
+</apex:page>

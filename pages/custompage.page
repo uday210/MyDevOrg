@@ -1,0 +1,7 @@
+<apex:page controller="customsettingscon">
+{!ff}
+<br/>
+<apex:repeat value="{!ff}" var="f">
+{!f.name} {!f.type__c}  <br/>
+</apex:repeat>
+</apex:page>

@@ -1,0 +1,6 @@
+<apex:page controller="saveacc">
+<apex:form >
+  <apex:inputField value="{!acc.Name}"/>
+  <apex:commandButton action="{!saveac}" value="save"/>
+</apex:form>
+</apex:page>

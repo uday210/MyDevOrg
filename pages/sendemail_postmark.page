@@ -1,0 +1,11 @@
+<apex:page controller="emailsend">
+ <apex:form >
+ Send Email To : <apex:inputText value="{!toaddress}"/><br/><br/>
+ Subject : <apex:inputText value="{!Subject}"/><br/><br/>
+ 
+ Email Body :<apex:inputTextarea value="{!HtmlBody}"/><br/><br/>
+ Attachment : <apex:inputFile fileName="{!importedfile}" value="{!filedata}"/>
+ 
+ <apex:commandbutton value="send" action="{!sendemail}"/>
+ </apex:form>
+</apex:page>

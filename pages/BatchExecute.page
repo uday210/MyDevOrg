@@ -1,0 +1,13 @@
+<apex:page controller="batchinvoke">
+  <apex:form >
+  <apex:outputPanel rendered="{!rendered }">
+ Send Email To : <apex:inputText value="{!toaddress}"/><br/><br/>
+ Subject : <apex:inputText value="{!Subject}"/><br/><br/>
+ 
+ Email Body :<apex:inputTextarea value="{!HtmlBody}"/><br/><br/>
+ <apex:commandbutton value="Export" action="{!invoke}"/>
+ 
+ </apex:outputPanel>
+<h3 style="color:red">{!Statusmsg }</h3>
+ </apex:form>
+</apex:page>

@@ -1,0 +1,51 @@
+<apex:page controller="myimportcon">
+<apex:form >
+
+  <apex:pageBlock >
+  
+      <apex:inputFile fileName="{!importedfile}" value="{!filedata}"/>
+      <apex:commandButton action="{!importdata}" value="Import Data"/>
+  </apex:pageBlock>
+  
+  <apex:pageBlock rendered="{!showoptions }" >
+   <apex:selectList size="1" value="{!firstcolumn}">
+      <apex:selectOptions value="{!csvheader}"/>
+    </apex:selectList> 
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <apex:selectList size="1" value="{!firstcolumnApi}">
+      <apex:selectOptions value="{!apimapping}"/>
+    </apex:selectList>
+    
+    <br/><br/><br/>
+    <apex:selectList size="1" value="{!secondcolumn}">
+      <apex:selectOptions value="{!csvheader}"/>
+    </apex:selectList> 
+    
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <apex:selectList size="1" value="{!secondcolumnApi}">
+      <apex:selectOptions value="{!apimapping}"/>
+    </apex:selectList>
+    <br/><br/><br/>
+    <apex:selectList size="1" value="{!thirdcolumn}">
+      <apex:selectOptions value="{!csvheader}"/>
+    </apex:selectList>
+    
+      
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <apex:selectList size="1" value="{!thirdcolumnApi}">
+      <apex:selectOptions value="{!apimapping}"/>
+    </apex:selectList> <br/><br/><br/>
+    <apex:commandButton action="{!mapping}" value="import"/>
+  </apex:pageBlock>
+  
+  <apex:pageBlock >
+  
+CSV Header ::::::::::::: API Name<br/>
+{!firstcolumn } :::::::: {!firstcolumnApi}<br/>
+{!secondcolumn} :::::::: {!secondcolumnApi}<br/>
+{!thirdcolumn} :::::::: {!thirdcolumnApi}
+  
+  </apex:pageBlock>
+</apex:form>
+</apex:page>

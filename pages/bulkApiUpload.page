@@ -1,0 +1,42 @@
+<apex:page controller="my_bulkDataupload_ctrl">
+<apex:form id="theForm">
+
+      <apex:pageBlock >
+
+          <apex:pageBlockSection >
+
+            <apex:inputFile value="{!csvFileBody}" filename="{!csvAsString}"/>
+
+            <apex:commandButton value="Save" action="{!upload}"/>
+
+          </apex:pageBlockSection>
+          
+          <apex:pageblockSection >
+          
+          
+          </apex:pageblockSection>
+
+       </apex:pageBlock>
+       
+   
+
+    </apex:form>
+    
+    <apex:form >
+        <apex:pageBlock id="pgblck2" rendered="{!isJobClosed }">
+          <h2>Job Closed Successfully Please Find Job status Below</h2>
+     
+        <apex:outputPanel rendered="{!IF((BulkApiCompletedStatus.numberBatchesQueued != 0)&& isJobClosed ,True,False)}">
+       <apex:actionPoller action="{!QueryJobStatus}" reRender="pgblck2" interval="5"/>
+       {!BulkApiCompletedStatus}
+       
+       </apex:outputPanel>
+       
+       <apex:outputPanel rendered="{!IF(( BulkApiCompletedStatus.numberBatchesQueued == 0)&& isJobClosed ,True,False)}">
+       <br/><h1>Batch Is Completed</h1><br/>
+       JOB Id : {!Jobidis }
+       </apex:outputPanel>
+       </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

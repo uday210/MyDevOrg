@@ -1,0 +1,5 @@
+<aura:component >
+    
+    <aura:handler event="c:PrSearchEvent" action="{!c.doSearch}"/>
+	
+</aura:component>

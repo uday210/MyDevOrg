@@ -1,0 +1,32 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction">
+    <div class="slds-grid">
+  <div class=" slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-7">
+    <div class="slds-box slds-box--small slds-theme--shade  slds-grid--vertical slds-navigation-list--vertical">
+        <h2 class="slds-text-title--caps slds-p-around--medium" id="entity-header">Reports</h2>
+  <ul>
+    <li class="slds-is-active"><a href="javascript:void(0);" class="slds-navigation-list--vertical__action slds-text-link--reset" aria-describedby="entity-header">Recent</a></li>
+    <li><a href="javascript:void(0);" class="slds-navigation-list--vertical__action slds-text-link--reset" aria-describedby="entity-header">Created by Me</a></li>
+    <li><a href="javascript:void(0);" class="slds-navigation-list--vertical__action slds-text-link--reset" aria-describedby="entity-header">Private Reports</a></li>
+    <li><a href="javascript:void(0);" class="slds-navigation-list--vertical__action slds-text-link--reset" aria-describedby="entity-header">Public Reports</a></li>
+    <li><a href="javascript:void(0);" class="slds-navigation-list--vertical__action slds-text-link--reset" aria-describedby="entity-header">All Reports</a></li>
+  </ul>
+  <h2 class="slds-text-title--caps slds-p-around--medium" id="folder-header">Folders</h2>
+  <ul>
+    <li><a href="javascript:void(0);" class="slds-navigation-list--vertical__action slds-text-link--reset" aria-describedby="folder-header">Created by Me</a></li>
+    <li><a href="javascript:void(0);" class="slds-navigation-list--vertical__action slds-text-link--reset" aria-describedby="folder-header">Shared with Me</a></li>
+    <li><a href="javascript:void(0);" class="slds-navigation-list--vertical__action slds-text-link--reset" aria-describedby="folder-header">All Reports</a></li>
+  </ul>
+      </div>
+  </div>
+
+        
+  <div class="slds-col">
+       <c:headerCmp />
+    <div class="slds-box slds-box--small slds-text-align--center">
+        <c:SearchPr />
+    <c:AllprCmp />
+    <c:PrPopupCmp /></div>
+  </div>
+</div>
+      
+</aura:component>

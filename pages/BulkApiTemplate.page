@@ -1,0 +1,3 @@
+<apex:page controller="globalDescribe"  contentType="text/csv#template.csv"  cache="true">
+ <apex:repeat value="{!Alldata }" var="eachfield">{!eachfield.fieldName},</apex:repeat>
+</apex:page>

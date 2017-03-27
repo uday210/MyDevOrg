@@ -1,0 +1,17 @@
+<aura:component controller="EinsteinvisionService_ctrl" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+    <lightning:spinner variant="brand" size="large" aura:id="mySpinner"/>
+    <aura:handler name='init' value="this" action="{!c.doInit}"/>
+    <aura:attribute name="AlldatSet" type="AllDataSetsEienstein.data[]"/>
+    <aura:attribute name="totalDataSet" type="Integer" default="0"/>
+    
+    Total data Sets  : {!v.totalDataSet}
+   <aura:iteration items="{!v.AlldatSet}" var="eachDataset">
+       <tr>
+           <td>   {!eachDataset.id}		&nbsp;&nbsp;&nbsp;	</td>
+           <td>   {!eachDataset.name} 	&nbsp;&nbsp;&nbsp;	</td> 
+           <td>   {!eachDataset.statusMsg} &nbsp;&nbsp;&nbsp;	</td>
+           <td>   <ui:outputDateTime value="{!eachDataset.createdAt}"/>&nbsp;&nbsp;</td>
+           <td>   <a class="uiButton--default uiButton"  data-id="{!eachDataset.id}" onclick="{!c.deleteDataset}">Delete Data Set</a>	</td>
+       </tr>   
+    </aura:iteration>
+</aura:component>

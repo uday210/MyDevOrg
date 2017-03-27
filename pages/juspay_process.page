@@ -1,0 +1,5 @@
+<apex:page controller="juspay_payment_process">
+<apex:form >
+<apex:inputText value="{!amount}"/><apex:commandButton value="pay" action="{!juspayInitiate}"/>
+</apex:form>
+</apex:page>

@@ -1,0 +1,22 @@
+.THIS .requiredfield{
+   
+}
+
+.THIS .notrequired{
+    display:none;
+}
+
+.THIS .select{
+    
+    background-color: rgb(255, 255, 255);
+    color: rgb(22, 50, 92);
+    border: 1px solid rgb(216, 221, 230);
+    border-radius: .25rem;
+    width: 100%;
+    -webkit-transition: border .1s linear,background-color .1s linear;
+    transition: border .1s linear,background-color .1s linear;
+    display: inline-block;
+    padding: 0 1rem 0 .75rem;
+    line-height: 1.875rem;
+    min-height: calc(1.875rem + (1px * 2));
+}

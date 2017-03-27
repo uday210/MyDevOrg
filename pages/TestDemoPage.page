@@ -1,0 +1,36 @@
+<apex:page controller="democon" id="pageid">
+<apex:form id="formid">
+<apex:outputPanel id="panelid">
+
+<apex:repeat value="{!acc}" var="a">
+
+<apex:inputField value="{!a.name}" id="test" /><br/>
+<input type='text'/>
+</apex:repeat>
+
+<apex:commandButton action="{!updaterec}" value="submit" onclick="if(callchangefun()) return false;"/>
+
+
+<!--<input type='button' value='submit' onclick="callchangefun()"/>-->
+</apex:outputPanel>
+
+
+<script>
+function callchangefun()
+
+{
+//alert('you can not change the value');
+
+var ab = document.getElementById('pageid:formid:j_id0:0:test').value;
+alert(ab);
+
+if(ab == '' || ab == null ||ab == undefined )
+{
+alert('please enter value');
+return true;
+}
+return true;
+}
+</script>
+</apex:form> 
+</apex:page>

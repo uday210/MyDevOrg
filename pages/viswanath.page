@@ -1,0 +1,14 @@
+<apex:page standardController="Account" recordSetVar="accs" sidebar="false" >
+    <apex:form >
+        <apex:pageblock title="list of Accounts">
+         <apex:pageblocktable value="{!accs}" var="a">
+        <apex:column value="{! a.name}"/>
+        <apex:column value="{! a.phone}"/>
+        <apex:column value="{! a.fax}"/> 
+         <apex:column value="{! a.industry}"/> 
+         </apex:pageblocktable>
+            <apex:commandButton value="previous" action="{! previous}"/>
+            <apex:commandButton value="next" action="{! next}"/>
+         </apex:pageblock>
+        </apex:form>
+</apex:page>

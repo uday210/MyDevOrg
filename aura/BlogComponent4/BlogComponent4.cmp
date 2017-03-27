@@ -1,0 +1,13 @@
+<aura:component controller="LightningHelper1">
+    <h1>Component  4 handling user events</h1>
+    <p><br/>pulls a list from controller and renders it when u click on button</p>
+    <aura:attribute name='sampleArrayAsObject' type='object'/>
+    <ui:button label='click me' press="{!c.setArrayValues}"/>
+    <ul>
+    	<aura:iteration items="{!v.sampleArrayAsObject}" var="currentItem">
+            <li><ui:outputText value="{!currentItem.Name}"/></li>
+        
+        </aura:iteration>
+    </ul>
+	
+</aura:component>

@@ -1,0 +1,9 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <aura:attribute name="Result" type="String"/>
+    <aura:registerEvent name="callEvent" type="c:myfirstevent"/>
+    
+    <ui:inputText aura:id="n1" label="Number 1"/>
+    <ui:inputText aura:id="n2" label="Number 2"/>
+    <ui:button label="Sum" press="{!c.Calculate}"/>
+    <ui:inputText />
+</aura:component>

@@ -1,0 +1,38 @@
+<apex:page standardController="Account">
+<button class="btn">My New button</button>
+<style>
+.btn{
+
+color : #F00 !important;
+}
+
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+console.log('Access Parent');
+console.log(document.parent);
+$j = jQuery.noConflict();
+$j(document).ready(function hideButton(){
+var url = window.location.href;
+
+if(url != -1){
+//alert('edit');
+var EditBtn = $j('[name="edit"]');
+console.log('>>>>>> ',EditBtn );
+EditBtn.css({"white-space":"normal","display":"none"});
+var DelBtn = $j('[name="del"]');
+DelBtn.css({"white-space":"normal","display":"none"});
+
+$j('[name="edit"]').hide();
+console.log('Done');
+}
+});
+
+
+function navigateToUrl(){
+
+//alert('Hello');
+
+}
+</script>
+</apex:page>

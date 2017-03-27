@@ -1,0 +1,17 @@
+<apex:page >
+
+<html>
+<head>
+
+</head>
+<body>
+  
+  <input type="button" onclick="BrowserDetection();" value="GetBrowswerName"/>
+</body>
+
+<script>
+var base_url = window.location;
+alert(base_url);
+</script>
+</html>
+</apex:page>

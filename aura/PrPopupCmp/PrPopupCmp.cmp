@@ -1,0 +1,52 @@
+<aura:component controller="AllPrCtrl" >
+	  <aura:handler event="c:openpopupevent" action="{!c.doOpenPopup}"/>
+      <aura:attribute name="showpopup" type="boolean" default="false"/>
+    <aura:attribute name="selectdPr" type="Partner_request__c"   default="{ 'sobjectType': 'Partner_request__c'}"/>
+    <aura:renderif isTrue="{!v.showpopup}">
+      
+    <div tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+  <div class="slds-modal__container">
+    <div class="slds-modal__header">
+      <button class="slds-button slds-modal__close slds-button--icon" title="Close">
+       
+        <span class="slds-assistive-text" onclick="{!c.closePopup}">Close</span>
+      </button>
+      <h2 id="header43" class="slds-text-heading--large">Partner Request Status</h2>
+    </div>
+      
+    <div class="slds-modal__content slds-p-around--large">
+         <div>
+      <span class="{!v.selectdPr.Completed__c ?'completed':'notCompleted'}">Badge Label</span>
+      </div>  
+      <div class="slds-form-element ">
+    			<label  class="slds-form-element__label" for="inputSample2">{!$Label.c.FirstName}</label>
+    			<div class="slds-form-element__control">
+      			<force:inputField class="slds-input input uiInput uiInputText uiInput--default uiInput--input" aura:id="firstName" value="{!v.selectdPr.First_Name__c}"  /> 
+    			</div>
+  			</div>
+        
+         <div class="slds-form-element ">
+    			<label  class="slds-form-element__label" for="inputSample2">Last Name</label>
+    			<div class="slds-form-element__control">
+      			<force:inputField class="slds-input input uiInput uiInputText uiInput--default uiInput--input" aura:id="lastName" value="{!v.selectdPr.Last_Name__c}"  /> 
+    			</div>
+  			</div>
+            <div class="slds-form-element ">
+    			<label  class="slds-form-element__label" for="inputSample2">Email</label>
+    			<div class="slds-form-element__control">
+      			<force:inputField class="slds-input input uiInput uiInputText uiInput--default uiInput--input" aura:id="email" value="{!v.selectdPr.Email__c}"  /> 
+    			</div>
+  			</div>
+     
+      
+    </div>
+    <div class="slds-modal__footer">
+      <button class="slds-button slds-button--neutral" onclick="{!c.closePopup}">Cancel</button>
+      <button class="slds-button slds-button--brand" onclick="{!c.doUpdate}">Save</button>
+    </div>
+  </div>
+</div>
+<div class="slds-backdrop slds-backdrop--open"></div>
+        </aura:renderif>
+
+</aura:component>
